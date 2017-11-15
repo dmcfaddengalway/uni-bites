@@ -9,6 +9,14 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+router.get('/register', function(req, res, next) {
+    res.render('register');
+});
+
+router.get('/login', function(req, res, next) {
+    res.render('login');
+});
+
 router.post('/register', function(req, res, next){
     var username = req.body.user_name;
     var password = req.body.password;
@@ -74,10 +82,6 @@ router.post('/login', function(req, res, next){
             });
         }
     });
-});
-
-router.get('/register', function(req, res, next) {
-    res.render('register');
 });
 
 /*
