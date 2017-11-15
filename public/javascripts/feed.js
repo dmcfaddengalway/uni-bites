@@ -1,5 +1,6 @@
 $(document).ready(function() {
     var totalCharacters = 140;
+    var showPosts = false;
     $("#postForm").keyup(function(event) {
         var inputText = event.target.value;
         $("#charRemaining").html(totalCharacters - inputText.length);
@@ -16,6 +17,12 @@ $(document).ready(function() {
             }
 
             $("#feedPosts").html(posts);
+            $( "#count" ).html(data.length);
+            if(!showPosts) {
+                $( "#feedPosts" ).hide();
+            } else {
+                $( "#feedPosts" ).show();
+            }
             setTimeout(getComments, 10000);
 
         });
@@ -42,5 +49,19 @@ $(document).ready(function() {
             });
         }
     });
+
+   $("#btn-count").click(function (event) {
+            var options = {};
+            if(!showPosts)
+            {
+                $("#feedPosts").show( "blind", options, 1000);
+                showPosts = true;
+            }
+            else
+            {
+                $("#feedPosts").hide( "blind", options, 1000);
+                showPosts = false;
+            }
+        });
 
 });
