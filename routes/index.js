@@ -19,6 +19,19 @@ router.post('/feed', function(req, res, next) {
     res.render("Comment updated successfully!");
 });
 
+/* Retrieves all comments */
+router.get('/getComments', function(req, res, next) {
+    Comment.find({}, function(err, comments) {
+
+    if (err) {
+        res.send(err);
+    }
+
+    res.json(comments);
+
+    });
+});
+
 /* Adds comments */
 router.post('/addComment', function(req, res, next) {
     var comment = new Comment(req.body);
@@ -30,19 +43,6 @@ router.post('/addComment', function(req, res, next) {
         res.json({
             "id": savedComment._id
         });
-    });
-});
-
-/* Retrieves all comments */
-router.get('/getComments', function(req, res, next) {
-    Comment.find({}, function(err, comments) {
-
-    if (err) {
-        res.send(err);
-    }
-
-    res.json(comments);
-
     });
 });
 
